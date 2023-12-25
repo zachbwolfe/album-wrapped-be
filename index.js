@@ -22,20 +22,21 @@ manager.connect()
       res.json(resp);
     });
 
-    app.post('/:album/:artist', async (req, res) => {
+    app.post('/upsert', async (req, res) => {
       console.log("api inserting!");
       const resp = await manager.insert(
-        req.params.album,
-        req.params.artist
+        req.body.album,
+        req.body.artist
       )
       res.json(resp);
     });
 
-    app.delete('/:album/:artist', async (req, res) => {
+    app.delete('/delete', async (req, res) => {
       console.log("api deleting!");
       const resp = await manager.remove(
-        req.params.album,
-        req.params.artist
+        req.body.albumName,
+        req.body.artist,
+        req.body.timestamp
       )
       res.json(resp);
     });

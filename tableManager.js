@@ -9,15 +9,6 @@ class TableManager {
     const url = 'mongodb://localhost:27017'; // Change this URL based on your MongoDB server configuration
     this.client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
   }
-    // Database Name
-
-    /*
-    id: int?
-    album name: String
-    artis: String
-    timestamp: long
-    */
-
   async connect() {
     try {
       await this.client.connect();
@@ -64,12 +55,19 @@ class TableManager {
 
   async remove(
     albumName,
-    artist
+    artist,
+    timestamp
   ) {
     console.log("removing!");
+    console.log({
+      albumName: albumName,
+      artist: artist,
+      timestamp: timestamp
+    });
     const resp = this.table.deleteOne({
       albumName: albumName,
-      artist: artist
+      artist: artist,
+      timestamp: timestamp
     });
     const data = await Promise.resolve(resp);
     return data;

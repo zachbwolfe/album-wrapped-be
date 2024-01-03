@@ -25,7 +25,7 @@ manager.connect()
     app.post('/upsert', async (req, res) => {
       console.log("api inserting!");
       const resp = await manager.insert(
-        req.body.album,
+        req.body.albumName,
         req.body.artist
       )
       res.json(resp);

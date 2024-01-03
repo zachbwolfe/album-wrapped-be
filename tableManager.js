@@ -1,4 +1,4 @@
-const { MongoClient } = require('mongodb');
+const { MongoClient, ServerApiVersion } = require('mongodb');
 
 
 class TableManager {
@@ -6,9 +6,15 @@ class TableManager {
 
   constructor() {
     // Connection URL
-    const url = 'mongodb://localhost:27017'; // Change this URL based on your MongoDB server configuration
-    this.client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
+    // const local = 'mongodb://localhost:27017'; // Change this URL based on your MongoDB server configuration
+    // this.client = new MongoClient(local, { useNewUrlParser: true, useUnifiedTopology: true });
+    const credentials = '/Users/zwolfe/Desktop/personalcode/X509-cert-5841951255022245067.pem';
+    this.client = new MongoClient('mongodb+srv://zwolfecluster.27mqexa.mongodb.net/?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority', {
+      tlsCertificateKeyFile: credentials,
+      serverApi: ServerApiVersion.v1
+    });
   }
+
   async connect() {
     try {
       await this.client.connect();
@@ -42,6 +48,8 @@ class TableManager {
     artist
   ) {
     console.log("inserting!");
+    console.log(albumName);
+    console.log(artist);
     const timestamp = new Date().getTime();
 
     const resp = this.table.insertOne({

@@ -9,7 +9,9 @@ class TableManager {
     // const local = 'mongodb://localhost:27017'; // Change this URL based on your MongoDB server configuration
     // this.client = new MongoClient(local, { useNewUrlParser: true, useUnifiedTopology: true });
     const tlsCertificateKeyFile = process.env.TLS_CERTIFICATE_KEY_FILE;
+    // const tlsCertificateKeyFile = './X509-cert-5841951255022245067.pem';
     const mongoConnectionString = process.env.MONGO_CONNECTION_STRING;
+    // const mongoConnectionString = 'mongodb+srv://zwolfecluster.27mqexa.mongodb.net/?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority'
     this.client = new MongoClient(mongoConnectionString, {
       tlsCertificateKeyFile: tlsCertificateKeyFile,
       serverApi: ServerApiVersion.v1

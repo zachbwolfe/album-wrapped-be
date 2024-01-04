@@ -10,7 +10,7 @@ const manager = new TableManager();
 
 app.use(express.json());
 
-const allowedOrigins = ['http://localhost:3001'];
+const allowedOrigins = ['http://localhost:3001', 'https://peaceful-kangaroo-e8f122.netlify.app'];
 app.use(cors({ origin: allowedOrigins }));
 
 manager.connect()
